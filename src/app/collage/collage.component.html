@@ -1,0 +1,14 @@
+<ng-container *ngIf="list$ | async as list">
+    <cdk-virtual-scroll-viewport itemSize="500" 
+        (scrolledIndexChange)="nextBatch($event, list[list.length-1].date)">
+        <li *cdkVirtualFor="let x of list; trackBy: trackByIdx">
+            <h2>{{x.title}} {{x.date}}</h2>
+            <div class="frame" *ngIf="x.url.includes('youtube');else theother">  
+                <iframe [src]="x.url | safeUrl" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <ng-template #theother>
+                <img #img [src]="x.url">
+            </ng-template>
+        </li>
+    </cdk-virtual-scroll-viewport>
+</ng-container>
