@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { API_KEY } from "./shared/apikey"
 import { HttpClient } from '@angular/common/http';
 import { ApodData } from "./shared/ApodData";
 import { Observable, of } from "rxjs";
@@ -9,7 +8,7 @@ import { tap, catchError } from "rxjs/operators";
   providedIn: 'root'
 })
 export class ApodService {
-  url = "https://api.nasa.gov/planetary/apod"
+  url = "http://localhost:3000"
 
   constructor(private http: HttpClient) { }
   /**
@@ -33,14 +32,7 @@ export class ApodService {
   }
 
   getToday() {
-    return this.http.get<ApodData>(this.url, {
-      params: {
-        "api_key": API_KEY,
-      }
-    }).pipe(
-      tap(_ => console.log("Fetched today's apod")),
-      catchError(this.handleError<ApodData>('getToday'))
-    );
+    return this.getDay(0);
   }
 
   getDay(date: number | Date, base?: Date) {
@@ -62,7 +54,6 @@ export class ApodService {
 
     return this.http.get<ApodData>(this.url, {
       params: {
-        "api_key": API_KEY,
         "date": dateString
       }
     }).pipe(
