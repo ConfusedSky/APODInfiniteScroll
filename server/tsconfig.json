@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "esnext",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "outDir": "build",
+        "allowJs": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts",
+        "**/*.test.ts"
+    ],
+    "include": [
+        "src/**/*"
+    ]
+}

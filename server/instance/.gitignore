@@ -1,0 +1,3 @@
+# Don't save any of these files but preserve this directory
+*
+!.gitignore

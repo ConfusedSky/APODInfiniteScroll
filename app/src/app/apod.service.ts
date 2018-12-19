@@ -9,6 +9,7 @@ import { tap, catchError } from "rxjs/operators";
   providedIn: 'root'
 })
 export class ApodService {
+  url = "https://api.nasa.gov/planetary/apod"
 
   constructor(private http: HttpClient) { }
   /**
@@ -32,7 +33,7 @@ export class ApodService {
   }
 
   getToday() {
-    return this.http.get<ApodData>("https://api.nasa.gov/planetary/apod", {
+    return this.http.get<ApodData>(this.url, {
       params: {
         "api_key": API_KEY,
       }
@@ -59,7 +60,7 @@ export class ApodService {
     }`;
     //console.log(dateString);
 
-    return this.http.get<ApodData>("https://api.nasa.gov/planetary/apod", {
+    return this.http.get<ApodData>(this.url, {
       params: {
         "api_key": API_KEY,
         "date": dateString
