@@ -1,4 +1,4 @@
-<ng-container *ngIf="list$ | async as list">
+<ng-container *ngIf="list$ | async as list; else spin">
     <cdk-virtual-scroll-viewport itemSize="500" 
         (scrolledIndexChange)="nextBatch($event, list[list.length-1].date)">
         <li *cdkVirtualFor="let x of list; trackBy: trackByIdx">
@@ -10,5 +10,11 @@
                 <img #img [src]="x.url">
             </ng-template>
         </li>
+        <li>
+            <mat-spinner></mat-spinner>
+        </li>
     </cdk-virtual-scroll-viewport>
 </ng-container>
+<ng-template #spin>
+    <mat-spinner></mat-spinner>
+</ng-template>
